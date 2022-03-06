@@ -1,0 +1,16 @@
+coverage
+coveralls
+pytest
+pytest-cov
+Sphinx
+sphinx-bootstrap-theme
+sphinxcontrib-fulltoc
+sphinxcontrib-websupport
+sphinx-click
+recommonmark
+twine
+importlib-metadata
+wheel
+setuptools
+pylama
+autopep8
