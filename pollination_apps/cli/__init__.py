@@ -37,3 +37,23 @@ def viz():
 
     """)
 
+
+@main.command('login')
+@click.option(
+    '-e', '--environment', help='the pollination environment',
+    type=click.Choice(['staging', 'production']),
+    default='production'
+)
+def login(environment):
+    """login to pollination"""
+
+    ctx = Context.from_file()
+    env = Environment.from_string(environment)
+    jwt = interactive_login(url=env.login_url)
+    client = ctx.client
+    client.set_host(env.api_host)
+    client.set_jwt(jwt)
+    ctx.api_token = client.create_api_token()
+    ctx.save()
+
+
