@@ -8,7 +8,7 @@ jobs:
     name: Unit tests
     strategy:
       matrix:
-        os: [macos-latest, ubuntu-latest, windows-latest]
+        os: [ubuntu-latest]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v2
@@ -46,8 +46,6 @@ jobs:
           pip install -r dev-requirements.txt
       - name: install semantic-release
         run: npm install @semantic-release/exec
-      - name: generate queenbee schemas
-        run: python ./gen_schemas.py
       - name: run semantic release
         id: new_release
         run: |
