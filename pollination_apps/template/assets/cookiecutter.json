@@ -1,0 +1,14 @@
+{
+  "project_name": "Python Boilerplate",
+  "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '-') }}",
+  "project_short_description": "The best Pollination app... so far!",
+  "pollination_owner": "ladybug-tools",
+  "app_visibility": [
+    "public",
+    "private"
+  ],
+  "ci": [
+    "github-actions",
+    "none"
+  ]
+}

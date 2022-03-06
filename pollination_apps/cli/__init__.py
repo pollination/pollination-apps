@@ -113,3 +113,10 @@ def deploy(path, owner, name, tag, message, environment, public):
         link=upload_link,
         path=path,
     )
+
+
+@main.command('new')
+def new():
+    """create a new app"""
+    output_dir = Path(os.getcwd())
+    generate_template(output_dir)
