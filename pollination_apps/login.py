@@ -21,4 +21,5 @@ def interactive_login(url: str = 'https://auth.staging.pollination.cloud/sdk-log
     httpd = HTTPServer((IP, PORT), RequestHandler)
     webbrowser.open_new(url)
     httpd.handle_request()
+    # pylint: disable=no-member
     return httpd.jwt

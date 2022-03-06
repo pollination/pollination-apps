@@ -5,6 +5,7 @@ import click
 from slugify.slugify import slugify
 
 from ..env import Environment
+from ..template import generate_template
 from .context import Context
 
 from..login import interactive_login
@@ -23,19 +24,6 @@ def main(ctx: click.Context):
             queenbee_art = f.read()
         click.echo(queenbee_art)
         click.echo(ctx.command.get_help(ctx))
-
-
-@main.command('viz')
-def viz():
-    """check pollination apps is flying"""
-    click.echo("""
-
-                                       .' '.            __
-  viiiiiiiiiiiiizzzzzzzzz!  . .        .   .           (__\_
-                               .         .         . -{{_(|8)
-                                 ' .  . ' ' .  . '     (__/
-
-    """)
 
 
 @main.command('login')
