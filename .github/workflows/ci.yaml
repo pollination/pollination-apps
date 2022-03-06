@@ -54,8 +54,8 @@ jobs:
           echo "::set-output name=tag::$nextRelease"
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-          PYPI_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
-          PYPI_USERNAME: ${{ secrets.PYPI_USERNAME }}
+          PYPI_PASSWORD: ${{ secrets.POLLINATION_PYPI_PASSWORD }}
+          PYPI_USERNAME: ${{ secrets.POLLINATION_PYPI_USERNAME }}
     outputs:
       tag: ${{ steps.new_release.outputs.tag }}
 
