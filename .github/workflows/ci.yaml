@@ -22,12 +22,7 @@ jobs:
           pip install -r requirements.txt
           pip install -r dev-requirements.txt
       - name: run tests
-        run: python -m pytest --cov=queenbee tests/
-      - name: run test coverage
-        run: |
-          echo "Coveralls is no longer supported"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python -m pytest --cov=pollination_apps tests/
 
   deploy:
     name: Deploy to GitHub and PyPI
