@@ -81,8 +81,7 @@ jobs:
         run: |
           pip install -U .
           pip install -r dev-requirements.txt
-          python gen_schemas.py --version ${{needs.deploy.outputs.tag}}
-          sphinx-apidoc -f -e -d 4 -o ./docs/modules ./queenbee
+          sphinx-apidoc -f -e -d 4 -o ./docs/modules ./pollination_apps
           sphinx-build -b html ./docs ./docs/_build
       - name: deploy to github pages
         uses: peaceiris/actions-gh-pages@v3

@@ -1,4 +1,4 @@
-# Pollination Apps:
+# Pollination Apps
 
 A python library to setup and deploy Apps to Pollination!
 
