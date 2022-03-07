@@ -88,7 +88,7 @@ def deploy(path, owner, name, tag, message, environment, public):
     try:
         client.update_app(owner=owner, slug=slug, public=public)
     except:
-        client.create_app(owner, slug, public)
+        client.create_app(owner, name, public)
 
     upload_link = client.get_upload_link(
         owner=owner,
