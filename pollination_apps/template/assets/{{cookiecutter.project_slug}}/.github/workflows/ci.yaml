@@ -1,8 +1,8 @@
 ---
-name: CI
+name: Deploy Pollination App
 on:
-  push:
-    tags
+  release:
+    types: [published]
 
 jobs:
   deploy:
@@ -28,4 +28,3 @@ jobs:
         env:
           POLLINATION_TOKEN: {% raw %}${{ secrets.POLLINATION_TOKEN }}{% endraw %}
 
-  

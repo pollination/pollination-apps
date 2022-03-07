@@ -36,7 +36,7 @@ Login to pollination:
 Deploy your app to pollination:
 
 ```
-> pollination-apps deploy --name "{{ cookiecutter.project_name }}" --{{ cookiecutter.app_visibility }}
+> pollination-apps deploy . --name "{{ cookiecutter.project_name }}" --{{ cookiecutter.app_visibility }}
 ```
 
 {% if cookiecutter.ci == "github-actions" %}
