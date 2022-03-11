@@ -2,6 +2,7 @@ import os
 from pathlib import Path
 
 import click
+from click import ClickException
 from slugify.slugify import slugify
 
 from ..env import Environment
@@ -18,6 +19,12 @@ MODULE_PATH = os.path.abspath(os.path.dirname(__file__))
 @click.pass_context
 def main(ctx: click.Context):
     """ The Pollination Apps CLI
+
+    Use this CLI to create a new app and deploy it to Pollination.
+
+    Try ``pollination-apps new`` and follow the directions for developing the app
+    and deploying your first app to Pollination.
+
     """
     if ctx.invoked_subcommand is None:
         with open(os.path.join(MODULE_PATH, 'assets/art.txt'), 'r') as f:
@@ -92,6 +99,12 @@ def deploy(path, owner, name, tag, message, environment, public):
     if name is None:
         name = path.name
 
+    for required_file in ('Dockerfile', 'app.py'):
+        if not path.joinpath(required_file).is_file():
+            raise ClickException(
+                f'Application folder is missing a required file: {required_file}'
+            )
+
     slug = slugify(name)
 
     if tag is None:
@@ -114,6 +127,15 @@ def deploy(path, owner, name, tag, message, environment, public):
         path=path,
     )
 
+    base_url = 'https://app.staging.pollination.cloud' if environment == 'staging' \
+        else 'https://app.pollination.cloud'
+
+    click.echo(
+        f'\nCongrats! {name} is successfully scheduled for deployment.\n'
+        'It can take a few minutes before the new version of the app is deployed to '
+        'Pollination. You can check the app at this URL: '
+        f'{base_url}/{owner}/applications/{slug}'
+    )
 
 @main.command('new')
 def new():
