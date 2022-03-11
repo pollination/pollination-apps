@@ -1,4 +1,6 @@
 import os
+import subprocess
+import signal
 from pathlib import Path
 
 import click
@@ -79,11 +81,17 @@ def login(environment: str, token_name: str):
     default='production'
 )
 @click.option(
-    '--public/--private', help='Indicate if the recipe or plugin should be created as '
+    '--public/--private', help='Indicate if the application should be created as '
     'a public or a private resource. This option does not change the visibility of a '
     'resource if it already exist.', is_flag=True, default=True
 )
-def deploy(path, owner, name, tag, message, environment, public):
+@click.option(
+    '--pollination/--local', help='A flag to change between deploying the app to '
+    'Pollination or locally. The local option is useful for testing and debugging the '
+    'app. To use the local deployment you must have Docker installed locally.',
+    is_flag=True, default=True
+)
+def deploy(path, owner, name, tag, message, environment, public, pollination):
     """deploy a new application version"""
     ctx = Context.from_file()
 
@@ -110,32 +118,56 @@ def deploy(path, owner, name, tag, message, environment, public):
     if tag is None:
         tag = 'latest'
 
-    try:
-        client.update_app(owner=owner, slug=slug, public=public)
-    except:
-        client.create_app(owner, name, public)
+    if pollination:
+        try:
+            client.update_app(owner=owner, slug=slug, public=public)
+        except:
+            client.create_app(owner, name, public)
 
-    upload_link = client.get_upload_link(
-        owner=owner,
-        slug=slug,
-        tag=tag,
-        release_notes=message,
-    )
+        upload_link = client.get_upload_link(
+            owner=owner,
+            slug=slug,
+            tag=tag,
+            release_notes=message,
+        )
 
-    client.upload_app_folder(
-        link=upload_link,
-        path=path,
-    )
+        client.upload_app_folder(
+            link=upload_link,
+            path=path,
+        )
 
-    base_url = 'https://app.staging.pollination.cloud' if environment == 'staging' \
-        else 'https://app.pollination.cloud'
+        base_url = 'https://app.staging.pollination.cloud' if environment == 'staging' \
+            else 'https://app.pollination.cloud'
 
-    click.echo(
-        f'\nCongrats! {name} is successfully scheduled for deployment.\n'
-        'It can take a few minutes before the new version of the app is deployed to '
-        'Pollination. You can check the app at this URL: '
-        f'{base_url}/{owner}/applications/{slug}'
-    )
+        click.echo(
+            f'\nCongrats! The "{name}" app is successfully scheduled for deployment.\n'
+            'It can take a few minutes before the new version of the app is deployed to '
+            'Pollination. You can check the app at this URL: '
+            f'{base_url}/{owner}/applications/{slug}'
+        )
+    else:
+        docker_file = path.joinpath('Dockerfile')
+        build_image = f'docker build -f {docker_file} -t {owner}/{slug}:{tag} {path}'
+        run_app = f'docker run -t -i --expose 8501 -p 8501:8501 {owner}/{slug}:{tag} streamlit run app.py'
+        click.echo(f'Building an image for {owner}/{slug}:{tag}')
+        rc = subprocess.call(build_image.split())
+        if rc != 0:
+            ClickException('Failed to build the image.')
+        click.echo(f'Starting the {name} app at http://localhost:8501/')
+
+        p = subprocess.Popen(
+            run_app.split(), stdout=subprocess.PIPE, stderr=subprocess.STDOUT
+        )
+
+        for line in iter(p.stdout.readline, b''):
+            msg = line.decode('utf-8').strip()
+            click.echo(msg)
+
+        try:
+            p.communicate()
+        except KeyboardInterrupt:
+            p.send_signal(signal.SIGINT)
+
 
 @main.command('new')
 def new():
