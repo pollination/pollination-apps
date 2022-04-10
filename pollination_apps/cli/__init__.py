@@ -32,7 +32,11 @@ def main(ctx: click.Context):
     type=click.Choice(['staging', 'production']),
     default='production'
 )
-def login(environment):
+@click.option(
+    '-t', '--token-name', help='the name of the api tokern created for this client',
+    default='pollination-apps-cli',
+)
+def login(environment: str, token_name: str):
     """login to pollination"""
 
     ctx = Context.from_file()
@@ -41,7 +45,15 @@ def login(environment):
     client = ctx.client
     client.set_host(env.api_host)
     client.set_jwt(jwt)
-    ctx.api_token = client.create_api_token()
+    user = client.get_account()
+    if client.api_token_name_exists(name=token_name):
+        raise click.ClickException(
+            f'Login Failed -> API Token name {token_name} is already taken. '
+            'You can either:\n'
+            f'\t1. delete it from the web application at https://app.pollination.cloud/{user.username}?tab=settings\n'
+            '\t2. choose a new name by using the --token-name/-t flag'
+        )
+    ctx.api_token = client.create_api_token(name=token_name)
     ctx.save()
 
 

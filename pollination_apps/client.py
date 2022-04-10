@@ -1,5 +1,6 @@
 import tarfile
 import tempfile
+from operator import truediv
 from pathlib import Path
 
 import pollination_sdk as sdk
@@ -36,11 +37,19 @@ class APIClient(object):
     def get_account(self) -> sdk.UserPrivate:
         return self.auth.get_me()
 
-    def create_api_token(self) -> str:
+    def api_token_name_exists(self, name: str) -> bool:
+        token_list: sdk.APITokenList = self.api_tokens.list_tokens()
+        for token in token_list.resources:
+            token: sdk.APIToken
+            if token.name == name:
+                return True
+        return False
+
+    def create_api_token(self, name: str) -> str:
         token: sdk.APITokenPrivate = self.api_tokens.create_token(
             api_token_create=sdk.APITokenCreate(
                 token_id='pollination-apps-cli',
-                name='pollination-apps-cli'
+                name=name,
             )
         )
         return token.token
