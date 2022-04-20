@@ -18,8 +18,3 @@ api_key = st.sidebar.text_input(
     'If you do not have a key already go to the settings tab under your profile to '
     'generate one.'
 ) or None
-
-query_params = st.experimental_get_query_params()
-defult_url = query_params['url'][0] if 'url' in query_params else \
-    'https://app.pollination.cloud/projects/chriswmackey/demo/jobs/' \
-    '9f7360bd-704c-49ae-8c29-f600f43c9b2b'

@@ -24,6 +24,16 @@ Start Streamlit
 
 Make changes to your app in the `app.py` file.
 
+## Run inside Docker image locally (Optional)
+You can run the app locally inside Docker to ensure the app will work fine after the
+deployment.
+
+You need to install Docker on your machine in order to be able to run this command
+
+```
+> pollination-apps run <app folder> {{ cookiecutter.pollination_owner }} --name "{{ cookiecutter.project_name }}"
+```
+
 ## Push to Pollination
 Push you app to pollination to share it with others.
 
