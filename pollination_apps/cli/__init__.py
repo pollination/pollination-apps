@@ -91,16 +91,10 @@ def login(environment: str, token_name: str):
     'resource if it already exist.', is_flag=True, default=True, show_default=True
 )
 @click.option(
-    '-api', '--api-token', help='valid Pollination api token', default=None,
+    '-api', '--api-token', type=str, help='A valid Pollination API token', default=None,
     show_default=True
 )
-@click.option(
-    '-afe', '--api-from-environment', is_flag=True,
-    help='use the api token from the environment', default=False,
-    show_default=True
-)
-def deploy(path, owner, name, tag, message, environment, public, api_token,
-           api_from_environment):
+def deploy(path, owner, name, tag, message, environment, public, api_token):
     """Deploy a new version of the application.
 
     Args:
@@ -109,11 +103,14 @@ def deploy(path, owner, name, tag, message, environment, public, api_token,
 
     if api_token:
         ctx = Context(api_token=api_token)
-    elif api_from_environment:
-        ctx = Context()
     else:
+        ctx = Context()
+
+    if not ctx.api_token:
         raise ClickException(
-            'You must provide an api token or use the --api-from-environment flag')
+            'Either provide an API key using --api-token or make sure the API key is'
+            ' assigned to your environment variable POLLINATION_TOKEN'
+        )
 
     client = ctx.client
     env = Environment.from_string(environment)
