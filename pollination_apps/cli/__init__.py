@@ -56,7 +56,6 @@ def login(environment: str, token_name: str):
     client.set_jwt(jwt)
     user = client.get_account()
     if client.api_token_name_exists(name=token_name):
-
         url = 'https://app.staging.pollination.cloud' if environment == 'staging' \
             else 'https://app.pollination.cloud'
 
@@ -84,21 +83,37 @@ def login(environment: str, token_name: str):
 @click.option(
     '-e', '--environment', help='the pollination environment',
     type=click.Choice(['staging', 'production']),
-    default='production'
+    default='production', show_default=True
 )
 @click.option(
     '--public/--private', help='Indicate if the application should be created as '
     'a public or a private resource. This option does not change the visibility of a '
-    'resource if it already exist.', is_flag=True, default=True
+    'resource if it already exist.', is_flag=True, default=True, show_default=True
 )
-def deploy(path, owner, name, tag, message, environment, public):
+@click.option(
+    '-api', '--api-token', help='valid Pollination api token', default=None,
+    show_default=True
+)
+@click.option(
+    '-afe', '--api-from-environment', is_flag=True,
+    help='use the api token from the environment', default=False,
+    show_default=True
+)
+def deploy(path, owner, name, tag, message, environment, public, api_token,
+           api_from_environment):
     """Deploy a new version of the application.
 
     Args:
         path: Full path to apps folder.
     """
 
-    ctx = Context.from_file()
+    if api_token:
+        ctx = Context(api_token=api_token)
+    elif api_from_environment:
+        ctx = Context()
+    else:
+        raise ClickException(
+            'You must provide an api token or use the --api-from-environment flag')
 
     client = ctx.client
     env = Environment.from_string(environment)
