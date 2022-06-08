@@ -22,7 +22,7 @@ Start Streamlit
 
 ```
 
-Make changes to your app in the `app.py` file in the "app".
+Make changes to your app in the `app.py` file inside the "app" folder.
 
 ## Run inside Docker image locally (Optional)
 
