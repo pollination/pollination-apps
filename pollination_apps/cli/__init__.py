@@ -91,7 +91,7 @@ def login(environment: str, token_name: str):
     'resource if it already exist.', is_flag=True, default=True, show_default=True
 )
 @click.option(
-    '-api', '--api-token', type=str, help='A valid Pollination API token', default=None,
+    '-at', '--api-token', type=str, help='A valid Pollination API token', default=None,
     show_default=True
 )
 def deploy(path, owner, name, tag, message, environment, public, api_token):
