@@ -1,0 +1,28 @@
+*.pyc
+test.py
+.pytest_cache
+*__pycache__
+.coverage
+*.ipynb
+.ipynb_checkpoints
+.tox
+*.egg-info
+tox.ini
+/.cache
+/.vscode
+.eggs
+*.code-workspace
+*.vtk
+*.glance
+*.zip
+*.log
+*.pnm
+*.ps
+.DS_Store
+# Rhino Backup files
+*.3dm.rhl
+*3dmbak
+#generate html model
+model.html
+
+venv/*
