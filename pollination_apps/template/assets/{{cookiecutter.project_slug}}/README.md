@@ -46,8 +46,29 @@ You need to install Docker on your machine in order to be able to run this comma
 
 In order to configure github actions to deploy your app you will need to:
 
-1. Configure a secret called `POLLINATION_TOKEN` with your Pollination API key as the value
-2. Create [a new release](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository) of your app on Github with a new tag
+1. [Create](https://docs.github.com/en/get-started/quickstart/create-a-repo) a repository on Github
+2. [Rename](https://docs.github.com/en/repositories/creating-and-managing-repositories/renaming-a-repository) the repository's main branch to "master"
+3. [Add](https://docs.github.com/en/actions/security-guides/encrypted-secrets) a secret called `POLLINATION_TOKEN` with your Pollination API key as the value
+4. Create [the first release](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository) of your app on Github with the tag v0.0.0
+5. In all your commit messages, use one of the following commit types;
+
+   - `feat`: A new feature
+   - `fix`: A bug fix
+   - `docs`: Documentation only changes
+   - `style`: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
+   - `refactor`: A code change that neither fixes a bug nor adds a feature
+   - `perf`: A code change that improves performance or size
+   - `test`: Adding missing tests or correcting existing tests
+   - `chore`: Other changes that don't modify src/test/
+   - `build`: Changes that affect the build system or external dependencies (example: changing the version of a dependency)
+   - `ci`: Changes to our CI or CD pipelines
+
+   Examples of commit messages:
+
+   - fix: Remove unused imports
+   - feat: Add capability to use analysis period
+
+   **Note** that the commit messages with only `fix` and `feat` type will trigger a deployment to Pollination.
 
 Github actions will then package and deploy your code to an app called [{{ cookiecutter.project_name }}](https://app.pollination.cloud/{{ cookiecutter.pollination_owner }}/applications/{{ cookiecutter.project_slug }})
 
