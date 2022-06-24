@@ -1,5 +1,5 @@
 {
-  "project_name": "Pollination app",
+  "project_name": "Pollination-app",
   "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '-') }}",
   "project_short_description": "Your Pollination app!",
   "pollination_owner": "",
