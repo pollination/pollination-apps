@@ -159,7 +159,7 @@ def deploy(path, owner, name, tag, message, environment, public, api_token):
         f'\nCongrats! The "{name}" app is successfully scheduled for deployment.\n'
         'It can take up to 10 minutes before the new version of the app is deployed to '
         'Pollination. You can check the app at this URL: '
-        f'{base_url}/{owner}/applications/{slug}'
+        f'{base_url}/{owner}/apps/{slug}'
     )
 
 
