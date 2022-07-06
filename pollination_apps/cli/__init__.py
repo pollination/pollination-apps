@@ -175,7 +175,10 @@ def new():
 @click.argument('owner', type=click.STRING)
 @click.option('-n', '--name', help='the name of the app (defaults to folder name)')
 @click.option('-t', '--tag', help='the tag for this version of the app')
-def run(path, owner, name, tag):
+@click.option('--static/--editable', ' /-e', help='Flag to note whether the container should '
+              'be editable by mounting the app path as a volume to the docker container. ', 
+              default=False, show_default=True)
+def run(path, owner, name, tag, editable):
     """Build and run the application locally.
 
     Args:
@@ -196,10 +199,15 @@ def run(path, owner, name, tag):
 
     if tag is None:
         tag = 'latest'
+    
+    # optionally mount the current path as a volume to the container
+    volume = ''
+    if editable:
+      volume = f'-v {path}/:/app'
 
     docker_file = path.joinpath('Dockerfile')
     build_image = f'docker build -f {docker_file} -t {owner}/{slug}:{tag} {path}'
-    run_app = f'docker run -t -i --expose 8501 -p 8501:8501 {owner}/{slug}:{tag} streamlit run app.py'
+    run_app = f'docker run -t -i --expose 8501 -p 8501:8501 {volume} {owner}/{slug}:{tag} streamlit run app.py'
     click.echo(f'Building an image for {owner}/{slug}:{tag}')
 
     p = subprocess.Popen(
