@@ -175,9 +175,9 @@ def new():
 @click.argument('owner', type=click.STRING)
 @click.option('-n', '--name', help='the name of the app (defaults to folder name)')
 @click.option('-t', '--tag', help='the tag for this version of the app')
-@click.option('--static/--editable', ' /-e', help='Flag to note whether the container should '
-              'be editable by mounting the app path as a volume to the docker container. ', 
-              default=False, show_default=True)
+@click.option('-e', '--editable', help='An option to set the container to be editable '
+              'by mounting the app path as a volume to the docker container. ', 
+              default=False, show_default=True, is_flag=True)
 def run(path, owner, name, tag, editable):
     """Build and run the application locally.
 
@@ -201,9 +201,7 @@ def run(path, owner, name, tag, editable):
         tag = 'latest'
     
     # optionally mount the current path as a volume to the container
-    volume = ''
-    if editable:
-      volume = f'-v {path}/:/app'
+    volume = f'-v {path}/:/app' if editable else ''
 
     docker_file = path.joinpath('Dockerfile')
     build_image = f'docker build -f {docker_file} -t {owner}/{slug}:{tag} {path}'
