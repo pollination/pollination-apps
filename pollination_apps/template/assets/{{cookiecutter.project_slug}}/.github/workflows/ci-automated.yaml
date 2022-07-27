@@ -20,9 +20,12 @@ jobs:
           echo $repo_name
           lowercase_repo_name=${repo_name,,}
           echo $lowercase_repo_name
-          echo "::set-output name=app-name::$lowercase_repo_name"
-
+          name_spaces=$(echo $lowercase_repo_name | sed 's/-/ /g' | sed 's/\w\+/\L\u&/g')
+          echo $name_spaces
+          echo "::set-output name=app-lowercase::$lowercase_repo_name"
+          echo "::set-output name=app-name::$name_spaces"
     outputs:
+      app-lowercase: {% raw %}${{ steps.generate_app_name.outputs.app-lowercase }}{% endraw %}
       app-name: {% raw %}${{ steps.generate_app_name.outputs.app-name }}{% endraw %}
 
 
@@ -35,7 +38,7 @@ jobs:
       - uses: actions/checkout@v2
         
       - name: Build docker image
-        run: docker build app --tag {% raw %}${{needs.generate-app-name.outputs.app-name}}{% endraw %}:latest
+        run: docker build app --tag {% raw %}${{needs.generate-app-name.outputs.app-lowercase}}{% endraw %}:latest
 
  
 
@@ -97,9 +100,9 @@ jobs:
           TAG=$(echo "${TAG:?}" | sed 's/[[:space:]]//g')
           TAG=${TAG%%-*}
 
-          echo pollination-apps deploy app --tag $TAG --owner {{cookiecutter.pollination_owner}} --name {% raw %}${{needs.generate-app-name.outputs.app-name}}{% endraw %} --{{cookiecutter.app_visibility}} --message {% raw %}"${{github.event.commits[0].message}}"{% endraw %} 
+          echo pollination-apps deploy app --tag $TAG --owner {{cookiecutter.pollination_owner}} --name {% raw %}"${{needs.generate-app-name.outputs.app-name}}"{% endraw %} --{{cookiecutter.app_visibility}} --message {% raw %}"${{github.event.commits[0].message}}"{% endraw %} 
 
-          pollination-apps deploy app --tag $TAG --owner {{cookiecutter.pollination_owner}} --name {% raw %}${{needs.generate-app-name.outputs.app-name}}{% endraw %} --{{cookiecutter.app_visibility}} --message {% raw %}"${{github.event.commits[0].message}}"{% endraw %} 
+          pollination-apps deploy app --tag $TAG --owner {{cookiecutter.pollination_owner}} --name {% raw %}"${{needs.generate-app-name.outputs.app-name}}"{% endraw %} --{{cookiecutter.app_visibility}} --message {% raw %}"${{github.event.commits[0].message}}"{% endraw %} 
 
         env:
           GITHUB_TOKEN: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
