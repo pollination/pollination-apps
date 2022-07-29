@@ -97,6 +97,7 @@ def login(environment: str, token_name: str):
 def deploy(path, owner, name, tag, message, environment, public, api_token):
     """Deploy a new version of the application.
 
+    \b
     Args:
         path: Full path to apps folder.
     """
@@ -178,9 +179,13 @@ def new():
 @click.option('-e', '--editable', help='An option to set the container to be editable '
               'by mounting the app path as a volume to the docker container. ', 
               default=False, show_default=True, is_flag=True)
-def run(path, owner, name, tag, editable):
+@click.option('--docker/--podman', help='An option to set the preferred container '
+              'technology. The default is set to docker. You can also use podman as '
+              'an alternative.', show_default=True, is_flag=True, default=True)
+def run(path, owner, name, tag, editable, docker):
     """Build and run the application locally.
 
+    \b
     Args:
         path: Full path to apps folder.
         owner: The owner of the app on pollination. e.g. ladybug-tools
@@ -202,10 +207,10 @@ def run(path, owner, name, tag, editable):
     
     # optionally mount the current path as a volume to the container
     volume = f'-v {path}/:/app' if editable else ''
-
+    container_manager = 'docker' if docker else 'podman'
     docker_file = path.joinpath('Dockerfile')
-    build_image = f'docker build -f {docker_file} -t {owner}/{slug}:{tag} {path}'
-    run_app = f'docker run -t -i --expose 8501 -p 8501:8501 {volume} {owner}/{slug}:{tag} streamlit run app.py'
+    build_image = f'{container_manager} build -f {docker_file} -t {owner}/{slug}:{tag} {path}'
+    run_app = f'{container_manager} run -t -i --expose 8501 -p 8501:8501 {volume} {owner}/{slug}:{tag} streamlit run app.py'
     click.echo(f'Building an image for {owner}/{slug}:{tag}')
 
     p = subprocess.Popen(
