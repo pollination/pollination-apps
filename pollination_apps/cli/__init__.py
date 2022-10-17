@@ -47,28 +47,11 @@ def main(ctx: click.Context):
 )
 def login(environment: str, token_name: str):
     """login to pollination"""
+    msg = 'The login command has been deprecated. Try to set the value using the ' \
+        'POLLINATION_TOKEN environmental variable or pass the API key to the commands ' \
+        'directly using the --api-token option.'
 
-    ctx = Context.from_file()
-    env = Environment.from_string(environment)
-    jwt = interactive_login(url=env.login_url)
-    client = ctx.client
-    client.set_host(env.api_host)
-    client.set_jwt(jwt)
-    user = client.get_account()
-    if client.api_token_name_exists(name=token_name):
-        url = 'https://app.staging.pollination.cloud' if environment == 'staging' \
-            else 'https://app.pollination.cloud'
-
-        raise click.ClickException(
-            f'Login Failed -> API Token name {token_name} is already taken. '
-            'You can:\n'
-            f'\t1. Delete it from the web application at {url}/{user.username}?tab=settings\n'
-            '\t2. Or choose a new name by using the --token-name/-t flag'
-            '\t3. Or create a token and manually copy it to '
-            f'{Path.home().joinpath(".pollination", "apps.config.json")}'
-        )
-    ctx.api_token = client.create_api_token(name=token_name)
-    ctx.save()
+    raise ClickException(msg)
 
 
 @main.command('deploy')
