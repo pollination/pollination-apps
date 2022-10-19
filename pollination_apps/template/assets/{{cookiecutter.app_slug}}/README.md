@@ -1,4 +1,4 @@
-# {{ cookiecutter.project_name }}
+# {{ cookiecutter.app_name }}
 
 {{ cookiecutter.project_short_description }}
 
@@ -31,13 +31,13 @@ You can run the app locally inside Docker to ensure the app will work fine after
 You need to install Docker on your machine in order to be able to run this command
 
 ```
-> pollination-apps run app {{ cookiecutter.pollination_owner }} --name "{{ cookiecutter.project_name }}"
+> pollination-apps run app {{ cookiecutter.app_owner }} --name "{{ cookiecutter.app_name }}"
 ```
 
 ## Deploy to Pollination
 
 ```
-> pollination-apps deploy app --name "{{ cookiecutter.project_name }}" --{{ cookiecutter.app_visibility }} --api-token "Your api token from Pollination"
+> pollination-apps deploy app --name "{{ cookiecutter.app_name }}" --{{ cookiecutter.app_visibility }} --api-token "Your api token from Pollination"
 ```
 
 {% if cookiecutter.ci == "github-manual" %}
@@ -50,7 +50,7 @@ In order to configure github actions to deploy your app you will need to:
 2. [Add](https://docs.github.com/en/actions/security-guides/encrypted-secrets) a secret called `POLLINATION_TOKEN` with your Pollination API key as the value
 3. Create [a new release](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository) of your app on Github with a new tag
 
-Github actions will then package and deploy your code to an app called [{{ cookiecutter.project_name }}](https://app.pollination.cloud/{{ cookiecutter.pollination_owner }}/applications/{{ cookiecutter.project_slug }})
+Github actions will then package and deploy your code to an app called [{{ cookiecutter.app_name }}](https://app.pollination.cloud/{{ cookiecutter.app_owner }}/applications/{{ cookiecutter.app_slug }})
 
 {% endif %}
 
@@ -84,6 +84,6 @@ In order to configure github actions to deploy your app you will need to:
 
    **Note** that the commit messages with only `fix` and `feat` type will trigger a deployment to Pollination.
 
-Github actions will then package and deploy your code to an app called [{{ cookiecutter.project_name }}](https://app.pollination.cloud/{{ cookiecutter.pollination_owner }}/applications/{{ cookiecutter.project_slug }})
+Github actions will then package and deploy your code to an app called [{{ cookiecutter.app_name }}](https://app.pollination.cloud/{{ cookiecutter.app_owner }}/applications/{{ cookiecutter.app_slug }})
 
 {% endif %}

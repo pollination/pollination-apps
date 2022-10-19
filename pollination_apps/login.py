@@ -29,7 +29,7 @@ class RequestHandler(BaseHTTPRequestHandler):
         return
 
 
-def interactive_login(url: str = 'https://auth.staging.pollination.cloud/sdk-login') -> str:
+def interactive_login(url: str = 'https://auth.pollination.cloud/sdk-login') -> str:
     httpd = ThreadingHTTPServer((IP, PORT), RequestHandler)
     webbrowser.open_new(url)
     httpd.serve_forever()
