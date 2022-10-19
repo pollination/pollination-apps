@@ -1,4 +1,5 @@
 import os
+import pathlib
 import subprocess
 import signal
 from pathlib import Path
@@ -10,8 +11,8 @@ from slugify.slugify import slugify
 from ..env import Environment
 from ..template import generate_template
 from .context import Context
+from ..config import Config
 
-from..login import interactive_login
 
 MODULE_PATH = os.path.abspath(os.path.dirname(__file__))
 
@@ -56,8 +57,8 @@ def login(environment: str, token_name: str):
 
 @main.command('deploy')
 @click.argument('path', type=click.Path(exists=True))
-@click.option('-o', '--owner', help='the owner of the app on pollination (defaults to logged in user)')
-@click.option('-n', '--name', help='the name of the app (defaults to folder name)')
+@click.option('-o', '--owner', help='the owner of the app on pollination.')
+@click.option('-n', '--name', help='the name of the app.')
 @click.option('-t', '--tag', help='the tag for this version of the app')
 @click.option(
     '-m', '--message', help='the commit message for this version of the app', show_default=True,
@@ -99,14 +100,8 @@ def deploy(path, owner, name, tag, message, environment, public, api_token):
     client = ctx.client
     env = Environment.from_string(environment)
     client.set_host(env.api_host)
-    user = client.get_account()
-
-    if owner is None:
-        owner = user.username
 
     path = Path(path).absolute()
-    if name is None:
-        name = path.name
 
     for required_file in ('Dockerfile', 'app.py'):
         if not path.joinpath(required_file).is_file():
@@ -114,7 +109,8 @@ def deploy(path, owner, name, tag, message, environment, public, api_token):
                 f'Application folder is missing a required file: {required_file}'
             )
 
-    slug = slugify(name)
+    owner, name, slug = _read_config(path, owner, name)
+    slug = slug or slugify(name)
 
     if tag is None:
         tag = 'latest'
@@ -148,17 +144,23 @@ def deploy(path, owner, name, tag, message, environment, public, api_token):
 
 
 @main.command('new')
-def new():
+@click.option(
+    '-p', '--path', type=click.Path(file_okay=False),
+    help='Path to the app directory. If the directory does not exist, a new directory '
+    'will be created.'
+)
+def new(path):
     """create a new app"""
-    output_dir = Path(os.getcwd())
+    output_dir = Path(path) if path else Path(os.getcwd())
+    output_dir.mkdir(parents=True, exist_ok=True)
     generate_template(output_dir)
 
 
 @main.command('run')
 @click.argument('path', type=click.Path(exists=True, resolve_path=True))
-@click.argument('owner', type=click.STRING)
-@click.option('-n', '--name', help='the name of the app (defaults to folder name)')
-@click.option('-t', '--tag', help='the tag for this version of the app')
+@click.option('-o', '--owner', help='The owner of the app on pollination. e.g. ladybug-tools')
+@click.option('-n', '--name', help='The name of the app.')
+@click.option('-t', '--tag', help='The tag for this version of the app')
 @click.option('-e', '--editable', help='An option to set the container to be editable '
               'by mounting the app path as a volume to the docker container. ', 
               default=False, show_default=True, is_flag=True)
@@ -171,11 +173,9 @@ def run(path, owner, name, tag, editable, docker):
     \b
     Args:
         path: Full path to apps folder.
-        owner: The owner of the app on pollination. e.g. ladybug-tools
+
     """
-    path = Path(path).absolute()
-    if name is None:
-        name = path.name
+    path = pathlib.Path(path)
 
     for required_file in ('Dockerfile', 'app.py'):
         if not path.joinpath(required_file).is_file():
@@ -183,7 +183,9 @@ def run(path, owner, name, tag, editable, docker):
                 f'Application folder is missing a required file: {required_file}'
             )
 
-    slug = slugify(name)
+    owner, name, slug = _read_config(path, owner, name)
+
+    slug = slug or slugify(name)
 
     if tag is None:
         tag = 'latest'
@@ -228,3 +230,27 @@ def run(path, owner, name, tag, editable, docker):
         p.communicate()
     except KeyboardInterrupt:
         p.send_signal(signal.SIGINT)
+
+
+def _read_config(path, owner, name):
+    try:
+        config = Config.from_folder(folder=path)
+    except FileNotFoundError as e:
+        if not owner:
+            raise ClickException(
+                'To deploy or run an app without a config file you must provide an owner.'
+            )
+        if not name:
+            raise ClickException(
+                'To deploy or run an app without a config file you must provide a name.'
+            )
+
+        # create a config file
+        config = Config(name=name, slug=slugify(name), owner=owner)
+        config.write(folder=path)
+    else:
+        owner = config.owner
+        name = config.name
+        slug = config.slug
+
+    return owner, name, slug
