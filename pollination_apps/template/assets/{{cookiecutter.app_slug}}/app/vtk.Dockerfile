@@ -1,4 +1,4 @@
-FROM python:3.7-slim as base
+FROM docker.io/python:3.7-slim as base
 
 RUN apt-get update \
     && apt-get -y install ffmpeg libsm6 libxext6 xvfb --no-install-recommends \
