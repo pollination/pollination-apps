@@ -1,6 +1,5 @@
 import tarfile
 import tempfile
-from operator import truediv
 from pathlib import Path
 
 import pollination_sdk as sdk
