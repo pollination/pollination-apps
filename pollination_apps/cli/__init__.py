@@ -244,9 +244,9 @@ def _read_config(path, owner, name):
             raise ClickException(
                 'To deploy or run an app without a config file you must provide a name.'
             )
-
+        slug = slugify(name)
         # create a config file
-        config = Config(name=name, slug=slugify(name), owner=owner)
+        config = Config(name=name, slug=slug, owner=owner)
         config.write(folder=path)
     else:
         owner = config.owner
