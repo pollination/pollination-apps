@@ -17,6 +17,11 @@ from ..config import Config
 MODULE_PATH = os.path.abspath(os.path.dirname(__file__))
 
 
+def _slugify(name):
+    """An internal function to slugify names."""
+    return slugify(name, replacements=[['_', '-']])
+
+
 @click.group(invoke_without_command=True)
 @click.version_option()
 @click.pass_context
@@ -110,7 +115,7 @@ def deploy(path, owner, name, tag, message, environment, public, api_token):
             )
 
     owner, name, slug = _read_config(path, owner, name)
-    slug = slug or slugify(name)
+    slug = slug or _slugify(name)
 
     if tag is None:
         tag = 'latest'
@@ -185,11 +190,11 @@ def run(path, owner, name, tag, editable, docker):
 
     owner, name, slug = _read_config(path, owner, name)
 
-    slug = slug or slugify(name)
+    slug = slug or _slugify(name)
 
     if tag is None:
         tag = 'latest'
-    
+
     # optionally mount the current path as a volume to the container
     volume = f'-v {path}/:/app' if editable else ''
     container_manager = 'docker' if docker else 'podman'
@@ -235,7 +240,7 @@ def run(path, owner, name, tag, editable, docker):
 def _read_config(path, owner, name):
     try:
         config = Config.from_folder(folder=path)
-    except FileNotFoundError as e:
+    except FileNotFoundError:
         if not owner:
             raise ClickException(
                 'To deploy or run an app without a config file you must provide an owner.'
@@ -244,7 +249,7 @@ def _read_config(path, owner, name):
             raise ClickException(
                 'To deploy or run an app without a config file you must provide a name.'
             )
-        slug = slugify(name)
+        slug = _slugify(name)
         # create a config file
         config = Config(name=name, slug=slug, owner=owner)
         config.write(folder=path)
