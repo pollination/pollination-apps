@@ -80,10 +80,17 @@ def login(environment: str, token_name: str):
     'resource if it already exist.', is_flag=True, default=True, show_default=True
 )
 @click.option(
+    '--typical-entrypoint/--custom-entrypoint', help='Indicate if the entry point module '
+    ' of the application is named "app.py" or something else. by Default, it is assumed '
+    'that the entry point module is named "app.py".',
+    is_flag=True, default=True, show_default=True
+)
+@click.option(
     '-at', '--api-token', type=str, help='A valid Pollination API token', default=None,
     show_default=True
 )
-def deploy(path, owner, name, tag, message, environment, public, api_token):
+def deploy(path, owner, name, tag, message, environment, public, typical_entrypoint, 
+           api_token):
     """Deploy a new version of the application.
 
     \b
@@ -108,7 +115,13 @@ def deploy(path, owner, name, tag, message, environment, public, api_token):
 
     path = Path(path).absolute()
 
-    for required_file in ('Dockerfile', 'app.py'):
+
+    required_files = ['Dockerfile', 'app.py']
+
+    if not typical_entrypoint:
+        required_files = ['Dockerfile']
+
+    for required_file in required_files:
         if not path.joinpath(required_file).is_file():
             raise ClickException(
                 f'Application folder is missing a required file: {required_file}'
