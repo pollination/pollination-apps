@@ -66,7 +66,8 @@ def login(environment: str, token_name: str):
 @click.option('-n', '--name', help='the name of the app.')
 @click.option('-t', '--tag', help='the tag for this version of the app')
 @click.option(
-    '-m', '--message', help='the commit message for this version of the app', show_default=True,
+    '-m', '--message', help='the commit message for this version of the app', 
+    show_default=True,
     default='A new version of the app.'
 )
 @click.option(
@@ -80,16 +81,15 @@ def login(environment: str, token_name: str):
     'resource if it already exist.', is_flag=True, default=True, show_default=True
 )
 @click.option(
-    '--typical-entrypoint/--custom-entrypoint', help='Indicate if the entry point module '
-    ' of the application is named "app.py" or something else. by Default, it is assumed '
-    'that the entry point module is named "app.py".',
-    is_flag=True, default=True, show_default=True
+    '--custom-entrypoint', help='Indicate that the entry point module '
+    ' of the application is named something other than "app.py".',
+    is_flag=True, default=False, show_default=True
 )
 @click.option(
     '-at', '--api-token', type=str, help='A valid Pollination API token', default=None,
     show_default=True
 )
-def deploy(path, owner, name, tag, message, environment, public, typical_entrypoint, 
+def deploy(path, owner, name, tag, message, environment, public, custom_entrypoint, 
            api_token):
     """Deploy a new version of the application.
 
@@ -118,7 +118,7 @@ def deploy(path, owner, name, tag, message, environment, public, typical_entrypo
 
     required_files = ['Dockerfile', 'app.py']
 
-    if not typical_entrypoint:
+    if custom_entrypoint:
         required_files = ['Dockerfile']
 
     for required_file in required_files:
