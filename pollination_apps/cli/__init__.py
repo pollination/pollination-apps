@@ -81,16 +81,14 @@ def login(environment: str, token_name: str):
     'resource if it already exist.', is_flag=True, default=True, show_default=True
 )
 @click.option(
-    '--custom-entrypoint', help='Indicate that the entry point module '
-    ' of the application is named something other than "app.py".',
-    is_flag=True, default=False, show_default=True
+    '-ep', '--entrypoint', help='Indicate that the entry point module of the application. '
+    'Default is "app.py".', default='app.py', show_default=True
 )
 @click.option(
     '-at', '--api-token', type=str, help='A valid Pollination API token', default=None,
     show_default=True
 )
-def deploy(path, owner, name, tag, message, environment, public, custom_entrypoint, 
-           api_token):
+def deploy(path, owner, name, tag, message, environment, public, entrypoint,  api_token):
     """Deploy a new version of the application.
 
     \b
@@ -115,11 +113,7 @@ def deploy(path, owner, name, tag, message, environment, public, custom_entrypoi
 
     path = Path(path).absolute()
 
-
-    required_files = ['Dockerfile', 'app.py']
-
-    if custom_entrypoint:
-        required_files = ['Dockerfile']
+    required_files = ['Dockerfile', entrypoint]
 
     for required_file in required_files:
         if not path.joinpath(required_file).is_file():
