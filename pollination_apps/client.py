@@ -59,12 +59,13 @@ class APIClient(object):
             slug=slug,
         )
 
-    def create_app(self, owner: str, name: str, public: bool = True):
+    def create_app(self, owner: str, name: str, public: bool = True, app_sdk: str = 'streamlit'):
         self.applications.create_application(
             owner=owner,
             application_create=sdk.ApplicationCreate(
                 name=name,
                 public=public,
+                sdk=app_sdk,
             )
         )
 

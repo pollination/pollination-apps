@@ -1,4 +1,4 @@
-pollination-sdk>=0.27.0
+pollination-sdk>=0.43.0
 pydantic==1.8.2
 PyYAML==5.4.1
 jsonschema==3.2.0

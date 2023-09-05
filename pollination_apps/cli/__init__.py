@@ -66,7 +66,12 @@ def login(environment: str, token_name: str):
 @click.option('-n', '--name', help='the name of the app.')
 @click.option('-t', '--tag', help='the tag for this version of the app')
 @click.option(
-    '-m', '--message', help='the commit message for this version of the app', 
+    '--sdk',
+    type=click.Choice(['streamlit', 'dash']),
+    default='streamlit', show_default=True,
+)
+@click.option(
+    '-m', '--message', help='the commit message for this version of the app',
     show_default=True,
     default='A new version of the app.'
 )
@@ -88,7 +93,7 @@ def login(environment: str, token_name: str):
     '-at', '--api-token', type=str, help='A valid Pollination API token', default=None,
     show_default=True
 )
-def deploy(path, owner, name, tag, message, environment, public, entrypoint,  api_token):
+def deploy(path, owner, name, tag, sdk, message, environment, public, entrypoint,  api_token):
     """Deploy a new version of the application.
 
     \b
@@ -130,7 +135,7 @@ def deploy(path, owner, name, tag, message, environment, public, entrypoint,  ap
     try:
         client.update_app(owner=owner, slug=slug, public=public)
     except:
-        client.create_app(owner, name, public)
+        client.create_app(owner, name, public, sdk)
 
     upload_link = client.get_upload_link(
         owner=owner,
@@ -174,7 +179,7 @@ def new(path):
 @click.option('-n', '--name', help='The name of the app.')
 @click.option('-t', '--tag', help='The tag for this version of the app')
 @click.option('-e', '--editable', help='An option to set the container to be editable '
-              'by mounting the app path as a volume to the docker container. ', 
+              'by mounting the app path as a volume to the docker container. ',
               default=False, show_default=True, is_flag=True)
 @click.option('--docker/--podman', help='An option to set the preferred container '
               'technology. The default is set to docker. You can also use podman as '

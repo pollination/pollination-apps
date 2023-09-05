@@ -1,9 +1,23 @@
 {
   "app_name": "My first app",
   "app_slug": "{{ cookiecutter.app_name.lower().replace(' ', '-') }}",
+  "sdk": [
+    "streamlit",
+    "dash"
+  ],
   "project_short_description": "My first Pollination app!",
   "app_owner": "",
-  "pollination_viewer": ["no", "yes"],
-  "app_visibility": ["public", "private"],
-  "ci": ["none", "github-manual", "github-automated"]
+  "pollination_viewer": [
+    "no",
+    "yes"
+  ],
+  "app_visibility": [
+    "public",
+    "private"
+  ],
+  "ci": [
+    "none",
+    "github-manual",
+    "github-automated"
+  ]
 }
