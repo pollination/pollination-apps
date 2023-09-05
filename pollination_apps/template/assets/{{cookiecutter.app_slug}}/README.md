@@ -10,6 +10,7 @@ Install dependencies:
 > pip install -r requirements.txt
 ```
 
+{% if cookiecutter.sdk == "streamlit" %}
 Start Streamlit
 
 ```
@@ -21,6 +22,23 @@ Start Streamlit
   External URL: http://152.37.119.122:8501
 
 ```
+{% elif cookiecutter.sdk == "dash" %}
+Start Dash
+
+```
+> python app.py
+
+    Dash is running on http://127.0.0.1:8050/
+
+    * Serving Flask app 'app' (lazy loading)
+    * Environment: production
+      WARNING: This is a development server. Do not use it in a production deployment.
+      Use a production WSGI server instead.
+    * Debug mode: on
+    * Running on http://127.0.0.1:8050 (Press CTRL+C to quit)
+
+```
+{% endif %}
 
 Make changes to your app in the `app.py` file inside the "app" folder.
 
@@ -37,7 +55,7 @@ You need to install Docker on your machine in order to be able to run this comma
 ## Deploy to Pollination
 
 ```
-> pollination-apps deploy app --name "{{ cookiecutter.app_name }}" --{{ cookiecutter.app_visibility }} --api-token "Your api token from Pollination"
+> pollination-apps deploy app --name "{{ cookiecutter.app_name }}" --sdk {{ cookiecutter.sdk }} --{{ cookiecutter.app_visibility }} --api-token "Your api token from Pollination"
 ```
 
 {% if cookiecutter.ci == "github-manual" %}

@@ -25,6 +25,6 @@ jobs:
           pip install pollination-apps
       - name: deploy app to pollination
         run: |
-          pollination-apps deploy app --owner {{cookiecutter.app_owner}} --name "{{cookiecutter.app_name}}" --tag {%raw%}${{ env.RELEASE_VERSION }}{%endraw%} --{{cookiecutter.app_visibility}}
+          pollination-apps deploy app --owner {{cookiecutter.app_owner}} --name "{{cookiecutter.app_name}}" --sdk {{ cookiecutter.sdk }} --tag {%raw%}${{ env.RELEASE_VERSION }}{%endraw%} --{{cookiecutter.app_visibility}}
         env:
           POLLINATION_TOKEN: {% raw %}${{ secrets.POLLINATION_TOKEN }}{% endraw %}

@@ -1,1 +1,6 @@
+{%- if cookiecutter.sdk == "streamlit" -%}
 pollination-streamlit>=0.5.0
+{%- elif cookiecutter.sdk == "dash" -%}
+dash
+gunicorn
+{% endif %}
