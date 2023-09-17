@@ -1,9 +1,3 @@
-{%- if cookiecutter.sdk == "streamlit" -%}
-import streamlit as st
-
-st.write("Welcome! Start writing your Pollination app here.")
-
-{%- elif cookiecutter.sdk == "dash" -%}
 from dash import Dash, html
 
 app = Dash(__name__)
@@ -17,4 +11,3 @@ app.layout = html.Div([
 
 if __name__ == '__main__':
     app.run_server(debug=True)
-{% endif %}
