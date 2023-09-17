@@ -1,0 +1,15 @@
+{
+  "app_name": "My first app",
+  "app_slug": "{{ cookiecutter.app_name.lower().replace(' ', '-') }}",
+  "project_short_description": "My first Pollination app!",
+  "app_owner": "",
+  "app_visibility": [
+    "public",
+    "private"
+  ],
+  "ci": [
+    "none",
+    "github-manual",
+    "github-automated"
+  ]
+}
