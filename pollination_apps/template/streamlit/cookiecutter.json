@@ -1,0 +1,18 @@
+{
+  "app_name": "My first app",
+  "project_short_description": "My first Pollination app!",
+  "app_owner": "",
+  "pollination_viewer": [
+    "no",
+    "yes"
+  ],
+  "app_visibility": [
+    "public",
+    "private"
+  ],
+  "ci": [
+    "none",
+    "github-manual",
+    "github-automated"
+  ]
+}

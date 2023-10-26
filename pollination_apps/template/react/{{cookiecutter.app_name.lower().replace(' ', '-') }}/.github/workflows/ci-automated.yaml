@@ -1,0 +1,111 @@
+---
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  
+
+  generate-app-name:
+    name: Generate App name
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        
+      - name: Generate App name
+        id: generate_app_name
+        run: |
+          repo_name={% raw %}${{ github.event.repository.name }}{% endraw %}
+          echo $repo_name
+          lowercase_repo_name=${repo_name,,}
+          echo $lowercase_repo_name
+          name_spaces=$(echo $lowercase_repo_name | sed 's/-/ /g' | sed 's/\w\+/\L\u&/g')
+          echo $name_spaces
+          echo "::set-output name=app-lowercase::$lowercase_repo_name"
+          echo "::set-output name=app-name::$name_spaces"
+    outputs:
+      app-lowercase: {% raw %}${{ steps.generate_app_name.outputs.app-lowercase }}{% endraw %}
+      app-name: {% raw %}${{ steps.generate_app_name.outputs.app-name }}{% endraw %}
+
+
+
+  test-docker:
+    name: Test Docker build
+    runs-on: ubuntu-latest
+    needs: generate-app-name
+    steps:
+      - uses: actions/checkout@v2
+        
+      - name: Build docker image
+        run: docker build app --tag {% raw %}${{needs.generate-app-name.outputs.app-lowercase}}{% endraw %}:latest
+
+ 
+
+  release-on-github:
+    name: Release on Github
+    runs-on: ubuntu-latest
+    needs: test-docker
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: set up node
+        uses: actions/setup-node@v2.1.2
+        with:
+          node-version: 14.2.0
+
+      - name: install semantic-release
+        run: npm install @semantic-release/exec
+
+      - name: run semantic release
+        id: new_release
+        run: |
+          nextRelease="`npx semantic-release@^17.0.0 --dryRun | grep -oP 'Published release \K.*? ' || true`"
+          npx semantic-release@^17.0.0
+          echo "::set-output name=tag::$nextRelease"
+
+        env:
+          GITHUB_TOKEN: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
+
+    outputs:
+      tag: {% raw %}${{ steps.new_release.outputs.tag }}{% endraw %}
+
+
+  deploy-to-pollination:
+    name: Deploy to Pollination
+    runs-on: ubuntu-latest
+    needs: [generate-app-name, release-on-github]
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.7
+
+      - name: Get Job Context
+        id: get-context
+        run: |
+          TAG=$(git describe --tags | sed 's/v//')
+          echo "Releasing tag: ${TAG:?}"
+          echo "::set-output name=tag::$TAG"
+
+      - name: install pollination-apps
+        run: pip install -U pollination-apps
+      
+      - name: deploy to production
+        run: |
+          TAG=$(echo "${TAG:?}" | sed 's/[[:space:]]//g')
+          TAG=${TAG%%-*}
+
+          echo pollination-apps deploy app --tag $TAG --owner {{cookiecutter.app_owner}} --name {% raw %}"${{needs.generate-app-name.outputs.app-name}}"{% endraw %} --sdk react --{{cookiecutter.app_visibility}} --message {% raw %}"${{github.event.commits[0].message}}"{% endraw %} 
+
+          pollination-apps deploy app --tag $TAG --owner {{cookiecutter.app_owner}} --name {% raw %}"${{needs.generate-app-name.outputs.app-name}}"{% endraw %} --sdk react --{{cookiecutter.app_visibility}} --message {% raw %}"${{github.event.commits[0].message}}"{% endraw %} 
+
+        env:
+          GITHUB_TOKEN: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
+          POLLINATION_TOKEN: {% raw %}${{ secrets.POLLINATION_TOKEN }}{% endraw %}
+          TAG: {% raw %}${{ steps.get-context.outputs.tag }}{% endraw %}
+

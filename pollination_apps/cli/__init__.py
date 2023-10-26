@@ -166,11 +166,16 @@ def deploy(path, owner, name, tag, sdk, message, environment, public, entrypoint
     help='Path to the app directory. If the directory does not exist, a new directory '
     'will be created.'
 )
-def new(path):
+@click.option(
+    '--sdk', type=click.Choice(['streamlit', 'dash', 'react']),
+    default='streamlit', show_default=True,
+    help='The SDK to use for the app.'
+)
+def new(path, sdk):
     """create a new app"""
     output_dir = Path(path) if path else Path(os.getcwd())
     output_dir.mkdir(parents=True, exist_ok=True)
-    generate_template(output_dir)
+    generate_template(sdk, output_dir)
 
 
 @main.command('run')
