@@ -2,6 +2,7 @@ import os
 import pathlib
 import subprocess
 import signal
+from urllib.parse import urlparse 
 from pathlib import Path
 
 import click
@@ -9,7 +10,7 @@ from click import ClickException
 from slugify.slugify import slugify
 
 from ..env import Environment
-from ..template import generate_template
+from ..template import generate_template, generate_template_non_interactive
 from .context import Context
 from ..config import Config
 
@@ -177,6 +178,53 @@ def new(path, sdk):
     output_dir.mkdir(parents=True, exist_ok=True)
     generate_template(sdk, output_dir)
 
+@main.command('new-from-url')
+@click.argument('url')
+@click.option(
+    '-at', '--api-token', type=str, help='A valid Pollination API token', default=None,
+    show_default=True
+)
+def new_from_url(url, api_token):
+    """Import an app from a git repository."""
+    # Example input
+    # https://app.pollination.cloud/{owner}/apps/{slug}
+    # get antoinedao and testy-test-test
+    owner, _, slug = url.split('/')[-3:]
+
+    if api_token:
+        ctx = Context(api_token=api_token)
+    else:
+        ctx = Context()
+
+    if not ctx.api_token:
+        raise ClickException(
+            'Either provide an API key using --api-token or make sure the API key is'
+            ' assigned to your environment variable POLLINATION_TOKEN'
+        )
+
+    client = ctx.client
+    host = urlparse(url).netloc
+    client.set_host(host.replace('app', 'api'))
+
+    try:
+        application = client.applications.get_application(owner, slug)
+    except Exception as error:
+        print(error)
+        raise ClickException(
+            f'Application {owner}/{slug} does not exist on Pollination.'
+        )
+    
+    output_dir = Path(os.getcwd())
+    output_dir.mkdir(parents=True, exist_ok=True)
+    generate_template_non_interactive(application.sdk, output_dir, context={
+        'app_name': application.name,
+        'project_short_description': application.description,
+        'app_owner': application.owner.name,
+        'slug': application.slug,
+        'pollination_viewer': 'no',
+        'app_visibility': 'public' if application.public else 'private',
+        'ci': 'none',
+    })
 
 @main.command('run')
 @click.argument('path', type=click.Path(exists=True, resolve_path=True))
