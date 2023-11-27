@@ -41,7 +41,7 @@ You need to install Docker on your machine in order to be able to run this comma
 ## Deploy to Pollination
 
 ```
-> pollination-apps deploy app --name "{{ cookiecutter.app_name }}" -sdk dash --{{ cookiecutter.app_visibility }} --api-token "Your api token from Pollination"
+> pollination-apps deploy app --name "{{ cookiecutter.app_name }}" --sdk dash --{{ cookiecutter.app_visibility }} --api-token "Your api token from Pollination"
 ```
 
 {% if cookiecutter.ci == "github-manual" %}

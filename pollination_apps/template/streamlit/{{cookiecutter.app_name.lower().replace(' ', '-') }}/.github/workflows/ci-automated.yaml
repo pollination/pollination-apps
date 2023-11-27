@@ -100,9 +100,9 @@ jobs:
           TAG=$(echo "${TAG:?}" | sed 's/[[:space:]]//g')
           TAG=${TAG%%-*}
 
-          echo pollination-apps deploy app --tag $TAG --owner {{cookiecutter.app_owner}} --name {% raw %}"${{needs.generate-app-name.outputs.app-name}}"{% endraw %} -sdk streamlit --{{cookiecutter.app_visibility}} --message {% raw %}"${{github.event.commits[0].message}}"{% endraw %} 
+          echo pollination-apps deploy app --tag $TAG --owner {{cookiecutter.app_owner}} --name {% raw %}"${{needs.generate-app-name.outputs.app-name}}"{% endraw %} --sdk streamlit --{{cookiecutter.app_visibility}} --message {% raw %}"${{github.event.commits[0].message}}"{% endraw %} 
 
-          pollination-apps deploy app --tag $TAG --owner {{cookiecutter.app_owner}} --name {% raw %}"${{needs.generate-app-name.outputs.app-name}}"{% endraw %} -sdk streamlit --{{cookiecutter.app_visibility}} --message {% raw %}"${{github.event.commits[0].message}}"{% endraw %} 
+          pollination-apps deploy app --tag $TAG --owner {{cookiecutter.app_owner}} --name {% raw %}"${{needs.generate-app-name.outputs.app-name}}"{% endraw %} --sdk streamlit --{{cookiecutter.app_visibility}} --message {% raw %}"${{github.event.commits[0].message}}"{% endraw %} 
 
         env:
           GITHUB_TOKEN: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
