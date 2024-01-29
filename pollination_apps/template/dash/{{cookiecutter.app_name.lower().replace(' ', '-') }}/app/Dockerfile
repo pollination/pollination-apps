@@ -1,4 +1,4 @@
-FROM docker.io/python:3.7-slim as base
+FROM docker.io/python:3.12-slim as base
 
 WORKDIR /app
 
