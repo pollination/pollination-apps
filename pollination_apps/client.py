@@ -17,10 +17,11 @@ class APIClient(object):
             self.set_jwt(access_token)
 
         self.set_host(host)
+        self._sdk_client = sdk.ApiClient(self.config)
 
-        self.auth = sdk.UserApi(sdk.ApiClient(self.config))
-        self.api_tokens = sdk.APITokensApi(sdk.ApiClient(self.config))
-        self.applications = sdk.ApplicationsApi(sdk.ApiClient(self.config))
+        self.auth = sdk.UserApi(self._sdk_client)
+        self.api_tokens = sdk.APITokensApi(self._sdk_client)
+        self.applications = sdk.ApplicationsApi(self._sdk_client)
 
     def set_host(self, host: str):
         self.config.host = host
@@ -32,6 +33,12 @@ class APIClient(object):
     def set_api_token(self, api_token: str):
         self.config.api_key = {'APIKeyAuth': api_token}
         self.config.access_token = None
+
+    def _get_auth_headers(self) -> dict:
+        headers = {}
+        self._sdk_client.update_params_for_auth(
+            headers, None, ['APIKeyAuth', 'JWTAuth'])
+        return headers
 
     def get_account(self) -> sdk.UserPrivate:
         return self.auth.get_me()
@@ -78,7 +85,7 @@ class APIClient(object):
             )
         )
 
-    def get_upload_link(self, owner: str, slug: str, tag: str, release_notes: str = '') -> sdk.S3UploadRequest:
+    def create_app_version(self, owner: str, slug: str, tag: str, release_notes: str = '') -> sdk.S3UploadRequest:
         return self.applications.upsert_application_version(
             owner=owner, slug=slug,
             new_application_version=sdk.NewApplicationVersion(
@@ -87,13 +94,21 @@ class APIClient(object):
             )
         )
 
-    def upload_app_folder(self, link: sdk.S3UploadRequest, path: Path):
+    def upload_app_folder(self, owner: str, slug: str, tag: str, path: Path):
         file = Path(tempfile.mktemp())
         with tarfile.open(file, mode="w:gz") as tar:
             for p in path.iterdir():
                 tar.add(p, arcname=p.name)
 
-        requests.post(
-            link.url, data=link.fields,
-            files={'file': open(file, 'rb')}
+        url = f'{self.config.host}/applications/{owner}/{slug}/versions/{tag}'
+
+        auth_headers = self._get_auth_headers()
+
+        res = requests.post(
+            url=url,
+            files={'file': open(file, 'rb')},
+            headers=auth_headers,
+            timeout=60,
         )
+
+        res.raise_for_status()

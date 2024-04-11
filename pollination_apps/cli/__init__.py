@@ -2,7 +2,7 @@ import os
 import pathlib
 import subprocess
 import signal
-from urllib.parse import urlparse 
+from urllib.parse import urlparse
 from pathlib import Path
 
 import click
@@ -138,7 +138,7 @@ def deploy(path, owner, name, tag, sdk, message, environment, public, entrypoint
     except:
         client.create_app(owner, name, public, sdk)
 
-    upload_link = client.get_upload_link(
+    client.create_app_version(
         owner=owner,
         slug=slug,
         tag=tag,
@@ -146,7 +146,9 @@ def deploy(path, owner, name, tag, sdk, message, environment, public, entrypoint
     )
 
     client.upload_app_folder(
-        link=upload_link,
+        owner=owner,
+        slug=slug,
+        tag=tag,
         path=path,
     )
 
@@ -177,6 +179,7 @@ def new(path, sdk):
     output_dir = Path(path) if path else Path(os.getcwd())
     output_dir.mkdir(parents=True, exist_ok=True)
     generate_template(sdk, output_dir)
+
 
 @main.command('new-from-url')
 @click.argument('url')
@@ -213,7 +216,7 @@ def new_from_url(url, api_token):
         raise ClickException(
             f'Application {owner}/{slug} does not exist on Pollination.'
         )
-    
+
     output_dir = Path(os.getcwd())
     output_dir.mkdir(parents=True, exist_ok=True)
     generate_template_non_interactive(application.sdk, output_dir, context={
@@ -225,6 +228,7 @@ def new_from_url(url, api_token):
         'app_visibility': 'public' if application.public else 'private',
         'ci': 'none',
     })
+
 
 @main.command('run')
 @click.argument('path', type=click.Path(exists=True, resolve_path=True))
