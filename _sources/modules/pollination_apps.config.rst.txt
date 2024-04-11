@@ -1,0 +1,7 @@
+pollination\_apps.config module
+===============================
+
+.. automodule:: pollination_apps.config
+   :members:
+   :undoc-members:
+   :show-inheritance:

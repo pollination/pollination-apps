@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Index &#8212; Pollination Apps  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/jsv.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/app.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.5/ace.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.5/mode-json.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.5/theme-chrome.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.15.0/lodash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tv4/1.2.7/tv4.min.js"></script>
+    <script src="_static/js/ref-parser.min.js"></script>
+    <script src="_static/js/jsv.js"></script>
+    <script src="_static/js/app.js"></script>
+    <link rel="index" title="Index" href="#" />
+    <link rel="search" title="Search" href="search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="_static/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+<script type="text/javascript" src="_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          Pollination Apps</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">CLI Docs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cli.html#installation">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cli.html#commands">Commands</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cli.html#commands-deploy">deploy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cli.html#commands-login">login</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cli.html#commands-new">new</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cli.html#commands-new-from-url">new-from-url</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cli.html#commands-run">run</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">API Docs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modules/pollination_apps.html">pollination_apps package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="modules/pollination_apps.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="modules/pollination_apps.cli.html">pollination_apps.cli package</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="modules/pollination_apps.cli.html#submodules">Submodules</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="modules/pollination_apps.cli.context.html">pollination_apps.cli.context module</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="modules/pollination_apps.cli.context.html#pollination_apps.cli.context.Context"><code class="docutils literal notranslate"><span class="pre">Context</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="modules/pollination_apps.cli.context.html#pollination_apps.cli.context.Context.api_token"><code class="docutils literal notranslate"><span class="pre">Context.api_token</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="modules/pollination_apps.cli.context.html#pollination_apps.cli.context.Context.client"><code class="docutils literal notranslate"><span class="pre">Context.client</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="modules/pollination_apps.cli.context.html#pollination_apps.cli.context.Context.from_file"><code class="docutils literal notranslate"><span class="pre">Context.from_file()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="modules/pollination_apps.cli.context.html#pollination_apps.cli.context.Context.save"><code class="docutils literal notranslate"><span class="pre">Context.save()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="modules/pollination_apps.cli.context.html#pollination_apps.cli.context.Context.try_login"><code class="docutils literal notranslate"><span class="pre">Context.try_login()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="modules/pollination_apps.cli.html#module-pollination_apps.cli">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="modules/pollination_apps.template.html">pollination_apps.template package</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="modules/pollination_apps.template.html#module-pollination_apps.template">Module contents</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="modules/pollination_apps.template.html#pollination_apps.template.generate_template"><code class="docutils literal notranslate"><span class="pre">generate_template()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="modules/pollination_apps.template.html#pollination_apps.template.generate_template_non_interactive"><code class="docutils literal notranslate"><span class="pre">generate_template_non_interactive()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="modules/pollination_apps.html#submodules">Submodules</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="modules/pollination_apps.client.html">pollination_apps.client module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="modules/pollination_apps.client.html#pollination_apps.client.APIClient"><code class="docutils literal notranslate"><span class="pre">APIClient</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="modules/pollination_apps.client.html#pollination_apps.client.APIClient.api_token_name_exists"><code class="docutils literal notranslate"><span class="pre">APIClient.api_token_name_exists()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="modules/pollination_apps.client.html#pollination_apps.client.APIClient.create_api_token"><code class="docutils literal notranslate"><span class="pre">APIClient.create_api_token()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="modules/pollination_apps.client.html#pollination_apps.client.APIClient.create_app"><code class="docutils literal notranslate"><span class="pre">APIClient.create_app()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="modules/pollination_apps.client.html#pollination_apps.client.APIClient.create_app_version"><code class="docutils literal notranslate"><span class="pre">APIClient.create_app_version()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="modules/pollination_apps.client.html#pollination_apps.client.APIClient.get_account"><code class="docutils literal notranslate"><span class="pre">APIClient.get_account()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="modules/pollination_apps.client.html#pollination_apps.client.APIClient.get_app"><code class="docutils literal notranslate"><span class="pre">APIClient.get_app()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="modules/pollination_apps.client.html#pollination_apps.client.APIClient.set_api_token"><code class="docutils literal notranslate"><span class="pre">APIClient.set_api_token()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="modules/pollination_apps.client.html#pollination_apps.client.APIClient.set_host"><code class="docutils literal notranslate"><span class="pre">APIClient.set_host()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="modules/pollination_apps.client.html#pollination_apps.client.APIClient.set_jwt"><code class="docutils literal notranslate"><span class="pre">APIClient.set_jwt()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="modules/pollination_apps.client.html#pollination_apps.client.APIClient.update_app"><code class="docutils literal notranslate"><span class="pre">APIClient.update_app()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="modules/pollination_apps.client.html#pollination_apps.client.APIClient.upload_app_folder"><code class="docutils literal notranslate"><span class="pre">APIClient.upload_app_folder()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="modules/pollination_apps.config.html">pollination_apps.config module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="modules/pollination_apps.config.html#pollination_apps.config.Config"><code class="docutils literal notranslate"><span class="pre">Config</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="modules/pollination_apps.config.html#pollination_apps.config.Config.from_file"><code class="docutils literal notranslate"><span class="pre">Config.from_file()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="modules/pollination_apps.config.html#pollination_apps.config.Config.from_folder"><code class="docutils literal notranslate"><span class="pre">Config.from_folder()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="modules/pollination_apps.config.html#pollination_apps.config.Config.name"><code class="docutils literal notranslate"><span class="pre">Config.name</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="modules/pollination_apps.config.html#pollination_apps.config.Config.owner"><code class="docutils literal notranslate"><span class="pre">Config.owner</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="modules/pollination_apps.config.html#pollination_apps.config.Config.write"><code class="docutils literal notranslate"><span class="pre">Config.write()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="modules/pollination_apps.env.html">pollination_apps.env module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="modules/pollination_apps.env.html#pollination_apps.env.Environment"><code class="docutils literal notranslate"><span class="pre">Environment</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="modules/pollination_apps.env.html#pollination_apps.env.Environment.api_host"><code class="docutils literal notranslate"><span class="pre">Environment.api_host</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="modules/pollination_apps.env.html#pollination_apps.env.Environment.from_string"><code class="docutils literal notranslate"><span class="pre">Environment.from_string()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="modules/pollination_apps.env.html#pollination_apps.env.Environment.login_url"><code class="docutils literal notranslate"><span class="pre">Environment.login_url</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="modules/pollination_apps.env.html#pollination_apps.env.EnvironmentEnum"><code class="docutils literal notranslate"><span class="pre">EnvironmentEnum</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="modules/pollination_apps.env.html#pollination_apps.env.EnvironmentEnum.production"><code class="docutils literal notranslate"><span class="pre">EnvironmentEnum.production</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="modules/pollination_apps.env.html#pollination_apps.env.EnvironmentEnum.staging"><code class="docutils literal notranslate"><span class="pre">EnvironmentEnum.staging</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="modules/pollination_apps.login.html">pollination_apps.login module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="modules/pollination_apps.login.html#pollination_apps.login.RequestHandler"><code class="docutils literal notranslate"><span class="pre">RequestHandler</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="modules/pollination_apps.login.html#pollination_apps.login.RequestHandler.do_GET"><code class="docutils literal notranslate"><span class="pre">RequestHandler.do_GET()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="modules/pollination_apps.login.html#pollination_apps.login.RequestHandler.jwt_file"><code class="docutils literal notranslate"><span class="pre">RequestHandler.jwt_file</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="modules/pollination_apps.login.html#pollination_apps.login.RequestHandler.log_message"><code class="docutils literal notranslate"><span class="pre">RequestHandler.log_message()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="modules/pollination_apps.login.html#pollination_apps.login.interactive_login"><code class="docutils literal notranslate"><span class="pre">interactive_login()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="modules/pollination_apps.html#module-pollination_apps">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html#indices-and-tables">Indices and tables</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">CLI Docs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">API Docs</a></li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">CLI Docs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">API Docs</a></li>
+</ul>
+
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
+      
+
+<h1 id="index">Index</h1>
+
+<div class="genindex-jumpbox">
+ <a href="#Symbols"><strong>Symbols</strong></a>
+ | <a href="#A"><strong>A</strong></a>
+ | <a href="#C"><strong>C</strong></a>
+ | <a href="#D"><strong>D</strong></a>
+ | <a href="#E"><strong>E</strong></a>
+ | <a href="#F"><strong>F</strong></a>
+ | <a href="#G"><strong>G</strong></a>
+ | <a href="#I"><strong>I</strong></a>
+ | <a href="#J"><strong>J</strong></a>
+ | <a href="#L"><strong>L</strong></a>
+ | <a href="#M"><strong>M</strong></a>
+ | <a href="#N"><strong>N</strong></a>
+ | <a href="#O"><strong>O</strong></a>
+ | <a href="#P"><strong>P</strong></a>
+ | <a href="#R"><strong>R</strong></a>
+ | <a href="#S"><strong>S</strong></a>
+ | <a href="#T"><strong>T</strong></a>
+ | <a href="#U"><strong>U</strong></a>
+ | <a href="#W"><strong>W</strong></a>
+ 
+</div>
+<h2 id="Symbols">Symbols</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    --api-token
+
+      <ul>
+        <li><a href="cli.html#cmdoption-Commands-deploy-at">Commands-deploy command line option</a>
+</li>
+        <li><a href="cli.html#cmdoption-Commands-new-from-url-at">Commands-new-from-url command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --docker
+
+      <ul>
+        <li><a href="cli.html#cmdoption-Commands-run-docker">Commands-run command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --editable
+
+      <ul>
+        <li><a href="cli.html#cmdoption-Commands-run-e">Commands-run command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --entrypoint
+
+      <ul>
+        <li><a href="cli.html#cmdoption-Commands-deploy-ep">Commands-deploy command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --environment
+
+      <ul>
+        <li><a href="cli.html#cmdoption-Commands-deploy-e">Commands-deploy command line option</a>
+</li>
+        <li><a href="cli.html#cmdoption-Commands-login-e">Commands-login command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --message
+
+      <ul>
+        <li><a href="cli.html#cmdoption-Commands-deploy-m">Commands-deploy command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --name
+
+      <ul>
+        <li><a href="cli.html#cmdoption-Commands-deploy-n">Commands-deploy command line option</a>
+</li>
+        <li><a href="cli.html#cmdoption-Commands-run-n">Commands-run command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --owner
+
+      <ul>
+        <li><a href="cli.html#cmdoption-Commands-deploy-o">Commands-deploy command line option</a>
+</li>
+        <li><a href="cli.html#cmdoption-Commands-run-o">Commands-run command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --path
+
+      <ul>
+        <li><a href="cli.html#cmdoption-Commands-new-p">Commands-new command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --podman
+
+      <ul>
+        <li><a href="cli.html#cmdoption-Commands-run-docker">Commands-run command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --private
+
+      <ul>
+        <li><a href="cli.html#cmdoption-Commands-deploy-public">Commands-deploy command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --public
+
+      <ul>
+        <li><a href="cli.html#cmdoption-Commands-deploy-public">Commands-deploy command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --sdk
+
+      <ul>
+        <li><a href="cli.html#cmdoption-Commands-deploy-sdk">Commands-deploy command line option</a>
+</li>
+        <li><a href="cli.html#cmdoption-Commands-new-sdk">Commands-new command line option</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    --tag
+
+      <ul>
+        <li><a href="cli.html#cmdoption-Commands-deploy-t">Commands-deploy command line option</a>
+</li>
+        <li><a href="cli.html#cmdoption-Commands-run-t">Commands-run command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --token-name
+
+      <ul>
+        <li><a href="cli.html#cmdoption-Commands-login-t">Commands-login command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --version
+
+      <ul>
+        <li><a href="cli.html#cmdoption-Commands-version">Commands command line option</a>
+</li>
+      </ul></li>
+      <li>
+    -at
+
+      <ul>
+        <li><a href="cli.html#cmdoption-Commands-deploy-at">Commands-deploy command line option</a>
+</li>
+        <li><a href="cli.html#cmdoption-Commands-new-from-url-at">Commands-new-from-url command line option</a>
+</li>
+      </ul></li>
+      <li>
+    -e
+
+      <ul>
+        <li><a href="cli.html#cmdoption-Commands-deploy-e">Commands-deploy command line option</a>
+</li>
+        <li><a href="cli.html#cmdoption-Commands-login-e">Commands-login command line option</a>
+</li>
+        <li><a href="cli.html#cmdoption-Commands-run-e">Commands-run command line option</a>
+</li>
+      </ul></li>
+      <li>
+    -ep
+
+      <ul>
+        <li><a href="cli.html#cmdoption-Commands-deploy-ep">Commands-deploy command line option</a>
+</li>
+      </ul></li>
+      <li>
+    -m
+
+      <ul>
+        <li><a href="cli.html#cmdoption-Commands-deploy-m">Commands-deploy command line option</a>
+</li>
+      </ul></li>
+      <li>
+    -n
+
+      <ul>
+        <li><a href="cli.html#cmdoption-Commands-deploy-n">Commands-deploy command line option</a>
+</li>
+        <li><a href="cli.html#cmdoption-Commands-run-n">Commands-run command line option</a>
+</li>
+      </ul></li>
+      <li>
+    -o
+
+      <ul>
+        <li><a href="cli.html#cmdoption-Commands-deploy-o">Commands-deploy command line option</a>
+</li>
+        <li><a href="cli.html#cmdoption-Commands-run-o">Commands-run command line option</a>
+</li>
+      </ul></li>
+      <li>
+    -p
+
+      <ul>
+        <li><a href="cli.html#cmdoption-Commands-new-p">Commands-new command line option</a>
+</li>
+      </ul></li>
+      <li>
+    -t
+
+      <ul>
+        <li><a href="cli.html#cmdoption-Commands-deploy-t">Commands-deploy command line option</a>
+</li>
+        <li><a href="cli.html#cmdoption-Commands-login-t">Commands-login command line option</a>
+</li>
+        <li><a href="cli.html#cmdoption-Commands-run-t">Commands-run command line option</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="A">A</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/pollination_apps.env.html#pollination_apps.env.Environment.api_host">api_host (pollination_apps.env.Environment property)</a>
+</li>
+      <li><a href="modules/pollination_apps.cli.context.html#pollination_apps.cli.context.Context.api_token">api_token (pollination_apps.cli.context.Context attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/pollination_apps.client.html#pollination_apps.client.APIClient.api_token_name_exists">api_token_name_exists() (pollination_apps.client.APIClient method)</a>
+</li>
+      <li><a href="modules/pollination_apps.client.html#pollination_apps.client.APIClient">APIClient (class in pollination_apps.client)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="C">C</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/pollination_apps.cli.context.html#pollination_apps.cli.context.Context.client">client (pollination_apps.cli.context.Context property)</a>
+</li>
+      <li>
+    Commands command line option
+
+      <ul>
+        <li><a href="cli.html#cmdoption-Commands-version">--version</a>
+</li>
+      </ul></li>
+      <li>
+    Commands-deploy command line option
+
+      <ul>
+        <li><a href="cli.html#cmdoption-Commands-deploy-at">--api-token</a>
+</li>
+        <li><a href="cli.html#cmdoption-Commands-deploy-ep">--entrypoint</a>
+</li>
+        <li><a href="cli.html#cmdoption-Commands-deploy-e">--environment</a>
+</li>
+        <li><a href="cli.html#cmdoption-Commands-deploy-m">--message</a>
+</li>
+        <li><a href="cli.html#cmdoption-Commands-deploy-n">--name</a>
+</li>
+        <li><a href="cli.html#cmdoption-Commands-deploy-o">--owner</a>
+</li>
+        <li><a href="cli.html#cmdoption-Commands-deploy-public">--private</a>
+</li>
+        <li><a href="cli.html#cmdoption-Commands-deploy-public">--public</a>
+</li>
+        <li><a href="cli.html#cmdoption-Commands-deploy-sdk">--sdk</a>
+</li>
+        <li><a href="cli.html#cmdoption-Commands-deploy-t">--tag</a>
+</li>
+        <li><a href="cli.html#cmdoption-Commands-deploy-at">-at</a>
+</li>
+        <li><a href="cli.html#cmdoption-Commands-deploy-e">-e</a>
+</li>
+        <li><a href="cli.html#cmdoption-Commands-deploy-ep">-ep</a>
+</li>
+        <li><a href="cli.html#cmdoption-Commands-deploy-m">-m</a>
+</li>
+        <li><a href="cli.html#cmdoption-Commands-deploy-n">-n</a>
+</li>
+        <li><a href="cli.html#cmdoption-Commands-deploy-o">-o</a>
+</li>
+        <li><a href="cli.html#cmdoption-Commands-deploy-t">-t</a>
+</li>
+        <li><a href="cli.html#cmdoption-Commands-deploy-arg-PATH">PATH</a>
+</li>
+      </ul></li>
+      <li>
+    Commands-login command line option
+
+      <ul>
+        <li><a href="cli.html#cmdoption-Commands-login-e">--environment</a>
+</li>
+        <li><a href="cli.html#cmdoption-Commands-login-t">--token-name</a>
+</li>
+        <li><a href="cli.html#cmdoption-Commands-login-e">-e</a>
+</li>
+        <li><a href="cli.html#cmdoption-Commands-login-t">-t</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    Commands-new command line option
+
+      <ul>
+        <li><a href="cli.html#cmdoption-Commands-new-p">--path</a>
+</li>
+        <li><a href="cli.html#cmdoption-Commands-new-sdk">--sdk</a>
+</li>
+        <li><a href="cli.html#cmdoption-Commands-new-p">-p</a>
+</li>
+      </ul></li>
+      <li>
+    Commands-new-from-url command line option
+
+      <ul>
+        <li><a href="cli.html#cmdoption-Commands-new-from-url-at">--api-token</a>
+</li>
+        <li><a href="cli.html#cmdoption-Commands-new-from-url-at">-at</a>
+</li>
+        <li><a href="cli.html#cmdoption-Commands-new-from-url-arg-URL">URL</a>
+</li>
+      </ul></li>
+      <li>
+    Commands-run command line option
+
+      <ul>
+        <li><a href="cli.html#cmdoption-Commands-run-docker">--docker</a>
+</li>
+        <li><a href="cli.html#cmdoption-Commands-run-e">--editable</a>
+</li>
+        <li><a href="cli.html#cmdoption-Commands-run-n">--name</a>
+</li>
+        <li><a href="cli.html#cmdoption-Commands-run-o">--owner</a>
+</li>
+        <li><a href="cli.html#cmdoption-Commands-run-docker">--podman</a>
+</li>
+        <li><a href="cli.html#cmdoption-Commands-run-t">--tag</a>
+</li>
+        <li><a href="cli.html#cmdoption-Commands-run-e">-e</a>
+</li>
+        <li><a href="cli.html#cmdoption-Commands-run-n">-n</a>
+</li>
+        <li><a href="cli.html#cmdoption-Commands-run-o">-o</a>
+</li>
+        <li><a href="cli.html#cmdoption-Commands-run-t">-t</a>
+</li>
+        <li><a href="cli.html#cmdoption-Commands-run-arg-PATH">PATH</a>
+</li>
+      </ul></li>
+      <li><a href="modules/pollination_apps.config.html#pollination_apps.config.Config">Config (class in pollination_apps.config)</a>
+</li>
+      <li><a href="modules/pollination_apps.cli.context.html#pollination_apps.cli.context.Context">Context (class in pollination_apps.cli.context)</a>
+</li>
+      <li><a href="modules/pollination_apps.client.html#pollination_apps.client.APIClient.create_api_token">create_api_token() (pollination_apps.client.APIClient method)</a>
+</li>
+      <li><a href="modules/pollination_apps.client.html#pollination_apps.client.APIClient.create_app">create_app() (pollination_apps.client.APIClient method)</a>
+</li>
+      <li><a href="modules/pollination_apps.client.html#pollination_apps.client.APIClient.create_app_version">create_app_version() (pollination_apps.client.APIClient method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="D">D</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/pollination_apps.login.html#pollination_apps.login.RequestHandler.do_GET">do_GET() (pollination_apps.login.RequestHandler method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="E">E</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/pollination_apps.env.html#pollination_apps.env.Environment">Environment (class in pollination_apps.env)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/pollination_apps.env.html#pollination_apps.env.EnvironmentEnum">EnvironmentEnum (class in pollination_apps.env)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="F">F</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/pollination_apps.cli.context.html#pollination_apps.cli.context.Context.from_file">from_file() (pollination_apps.cli.context.Context class method)</a>
+
+      <ul>
+        <li><a href="modules/pollination_apps.config.html#pollination_apps.config.Config.from_file">(pollination_apps.config.Config class method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/pollination_apps.config.html#pollination_apps.config.Config.from_folder">from_folder() (pollination_apps.config.Config class method)</a>
+</li>
+      <li><a href="modules/pollination_apps.env.html#pollination_apps.env.Environment.from_string">from_string() (pollination_apps.env.Environment class method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="G">G</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/pollination_apps.template.html#pollination_apps.template.generate_template">generate_template() (in module pollination_apps.template)</a>
+</li>
+      <li><a href="modules/pollination_apps.template.html#pollination_apps.template.generate_template_non_interactive">generate_template_non_interactive() (in module pollination_apps.template)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/pollination_apps.client.html#pollination_apps.client.APIClient.get_account">get_account() (pollination_apps.client.APIClient method)</a>
+</li>
+      <li><a href="modules/pollination_apps.client.html#pollination_apps.client.APIClient.get_app">get_app() (pollination_apps.client.APIClient method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="I">I</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/pollination_apps.login.html#pollination_apps.login.interactive_login">interactive_login() (in module pollination_apps.login)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="J">J</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/pollination_apps.login.html#pollination_apps.login.RequestHandler.jwt_file">jwt_file (pollination_apps.login.RequestHandler attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="L">L</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/pollination_apps.login.html#pollination_apps.login.RequestHandler.log_message">log_message() (pollination_apps.login.RequestHandler method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/pollination_apps.env.html#pollination_apps.env.Environment.login_url">login_url (pollination_apps.env.Environment property)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="M">M</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    module
+
+      <ul>
+        <li><a href="modules/pollination_apps.html#module-pollination_apps">pollination_apps</a>
+</li>
+        <li><a href="modules/pollination_apps.cli.html#module-pollination_apps.cli">pollination_apps.cli</a>
+</li>
+        <li><a href="modules/pollination_apps.cli.context.html#module-pollination_apps.cli.context">pollination_apps.cli.context</a>
+</li>
+        <li><a href="modules/pollination_apps.client.html#module-pollination_apps.client">pollination_apps.client</a>
+</li>
+        <li><a href="modules/pollination_apps.config.html#module-pollination_apps.config">pollination_apps.config</a>
+</li>
+        <li><a href="modules/pollination_apps.env.html#module-pollination_apps.env">pollination_apps.env</a>
+</li>
+        <li><a href="modules/pollination_apps.login.html#module-pollination_apps.login">pollination_apps.login</a>
+</li>
+        <li><a href="modules/pollination_apps.template.html#module-pollination_apps.template">pollination_apps.template</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="N">N</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/pollination_apps.config.html#pollination_apps.config.Config.name">name (pollination_apps.config.Config attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="O">O</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/pollination_apps.config.html#pollination_apps.config.Config.owner">owner (pollination_apps.config.Config attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="P">P</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    PATH
+
+      <ul>
+        <li><a href="cli.html#cmdoption-Commands-deploy-arg-PATH">Commands-deploy command line option</a>
+</li>
+        <li><a href="cli.html#cmdoption-Commands-run-arg-PATH">Commands-run command line option</a>
+</li>
+      </ul></li>
+      <li>
+    pollination_apps
+
+      <ul>
+        <li><a href="modules/pollination_apps.html#module-pollination_apps">module</a>
+</li>
+      </ul></li>
+      <li>
+    pollination_apps.cli
+
+      <ul>
+        <li><a href="modules/pollination_apps.cli.html#module-pollination_apps.cli">module</a>
+</li>
+      </ul></li>
+      <li>
+    pollination_apps.cli.context
+
+      <ul>
+        <li><a href="modules/pollination_apps.cli.context.html#module-pollination_apps.cli.context">module</a>
+</li>
+      </ul></li>
+      <li>
+    pollination_apps.client
+
+      <ul>
+        <li><a href="modules/pollination_apps.client.html#module-pollination_apps.client">module</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    pollination_apps.config
+
+      <ul>
+        <li><a href="modules/pollination_apps.config.html#module-pollination_apps.config">module</a>
+</li>
+      </ul></li>
+      <li>
+    pollination_apps.env
+
+      <ul>
+        <li><a href="modules/pollination_apps.env.html#module-pollination_apps.env">module</a>
+</li>
+      </ul></li>
+      <li>
+    pollination_apps.login
+
+      <ul>
+        <li><a href="modules/pollination_apps.login.html#module-pollination_apps.login">module</a>
+</li>
+      </ul></li>
+      <li>
+    pollination_apps.template
+
+      <ul>
+        <li><a href="modules/pollination_apps.template.html#module-pollination_apps.template">module</a>
+</li>
+      </ul></li>
+      <li><a href="modules/pollination_apps.env.html#pollination_apps.env.EnvironmentEnum.production">production (pollination_apps.env.EnvironmentEnum attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="R">R</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/pollination_apps.login.html#pollination_apps.login.RequestHandler">RequestHandler (class in pollination_apps.login)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="S">S</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/pollination_apps.cli.context.html#pollination_apps.cli.context.Context.save">save() (pollination_apps.cli.context.Context method)</a>
+</li>
+      <li><a href="modules/pollination_apps.client.html#pollination_apps.client.APIClient.set_api_token">set_api_token() (pollination_apps.client.APIClient method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/pollination_apps.client.html#pollination_apps.client.APIClient.set_host">set_host() (pollination_apps.client.APIClient method)</a>
+</li>
+      <li><a href="modules/pollination_apps.client.html#pollination_apps.client.APIClient.set_jwt">set_jwt() (pollination_apps.client.APIClient method)</a>
+</li>
+      <li><a href="modules/pollination_apps.env.html#pollination_apps.env.EnvironmentEnum.staging">staging (pollination_apps.env.EnvironmentEnum attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="T">T</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/pollination_apps.cli.context.html#pollination_apps.cli.context.Context.try_login">try_login() (pollination_apps.cli.context.Context method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="U">U</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/pollination_apps.client.html#pollination_apps.client.APIClient.update_app">update_app() (pollination_apps.client.APIClient method)</a>
+</li>
+      <li><a href="modules/pollination_apps.client.html#pollination_apps.client.APIClient.upload_app_folder">upload_app_folder() (pollination_apps.client.APIClient method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    URL
+
+      <ul>
+        <li><a href="cli.html#cmdoption-Commands-new-from-url-arg-URL">Commands-new-from-url command line option</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="W">W</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/pollination_apps.config.html#pollination_apps.config.Config.write">write() (pollination_apps.config.Config method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2021, Ladybug Tools.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
