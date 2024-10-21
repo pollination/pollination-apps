@@ -1,0 +1,18 @@
+pollination\_apps.cli package
+=============================
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   pollination_apps.cli.context
+
+Module contents
+---------------
+
+.. automodule:: pollination_apps.cli
+   :members:
+   :undoc-members:
+   :show-inheritance:

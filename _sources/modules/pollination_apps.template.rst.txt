@@ -1,0 +1,10 @@
+pollination\_apps.template package
+==================================
+
+Module contents
+---------------
+
+.. automodule:: pollination_apps.template
+   :members:
+   :undoc-members:
+   :show-inheritance:
