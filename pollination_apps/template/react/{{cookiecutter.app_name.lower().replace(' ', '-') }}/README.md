@@ -32,7 +32,7 @@ In order to configure github actions to deploy your app you will need to:
 2. [Add](https://docs.github.com/en/actions/security-guides/encrypted-secrets) a secret called `POLLINATION_TOKEN` with your Pollination API key as the value
 3. Create [a new release](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository) of your app on Github with a new tag
 
-Github actions will then package and deploy your code to an app called [{{ cookiecutter.app_name }}](https://app.pollination.cloud/{{ cookiecutter.app_owner }}/applications/{{ cookiecutter.app_name.lower().replace(' ', '-') }})
+Github actions will then package and deploy your code to an app called [{{ cookiecutter.app_name }}](https://app.pollination.solutions/{{ cookiecutter.app_owner }}/applications/{{ cookiecutter.app_name.lower().replace(' ', '-') }})
 
 {% endif %}
 
@@ -66,6 +66,6 @@ In order to configure github actions to deploy your app you will need to:
 
    **Note** that the commit messages with only `fix` and `feat` type will trigger a deployment to Pollination.
 
-Github actions will then package and deploy your code to an app called [{{ cookiecutter.app_name }}](https://app.pollination.cloud/{{ cookiecutter.app_owner }}/applications/{{ cookiecutter.app_name.lower().replace(' ', '-') }})
+Github actions will then package and deploy your code to an app called [{{ cookiecutter.app_name }}](https://app.pollination.solutions/{{ cookiecutter.app_owner }}/applications/{{ cookiecutter.app_name.lower().replace(' ', '-') }})
 
 {% endif %}

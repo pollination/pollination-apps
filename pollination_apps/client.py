@@ -9,7 +9,7 @@ import requests
 class APIClient(object):
     """A Pollination client designed to interact with Workflow and Simulation objects."""
 
-    def __init__(self, api_token=None, access_token=None, host='https://api.pollination.cloud'):
+    def __init__(self, api_token=None, access_token=None, host='https://api.pollination.solutions'):
         self.config = sdk.Configuration()
         if api_token is not None:
             self.set_api_token(api_token)

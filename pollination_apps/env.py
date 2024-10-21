@@ -18,12 +18,12 @@ class Environment:
     @property
     def api_host(self) -> str:
         if self._env == EnvironmentEnum.staging:
-            return 'https://api.staging.pollination.cloud'
+            return 'https://api.staging.pollination.solutions'
         else:
-            return 'https://api.pollination.cloud'
+            return 'https://api.pollination.solutions'
 
     @property
     def login_url(self) -> str:
         if self._env == EnvironmentEnum.staging:
-            return 'https://auth.staging.pollination.cloud/sdk-login'
-        return 'https://auth.pollination.cloud/sdk-login'
+            return 'https://auth.staging.pollination.solutions/sdk-login'
+        return 'https://auth.pollination.solutions/sdk-login'

@@ -1,19 +1,18 @@
 import os
 import pathlib
-import subprocess
 import signal
-from urllib.parse import urlparse
+import subprocess
 from pathlib import Path
+from urllib.parse import urlparse
 
 import click
 from click import ClickException
 from slugify.slugify import slugify
 
+from ..config import Config
 from ..env import Environment
 from ..template import generate_template, generate_template_non_interactive
 from .context import Context
-from ..config import Config
-
 
 MODULE_PATH = os.path.abspath(os.path.dirname(__file__))
 
@@ -152,8 +151,8 @@ def deploy(path, owner, name, tag, sdk, message, environment, public, entrypoint
         path=path,
     )
 
-    base_url = 'https://app.staging.pollination.cloud' if environment == 'staging' \
-        else 'https://app.pollination.cloud'
+    base_url = 'https://app.staging.pollination.solutions' if environment == 'staging' \
+        else 'https://app.pollination.solutions'
 
     click.echo(
         f'\nCongrats! The "{name}" app is successfully scheduled for deployment.\n'
@@ -190,7 +189,7 @@ def new(path, sdk):
 def new_from_url(url, api_token):
     """Import an app from a git repository."""
     # Example input
-    # https://app.pollination.cloud/{owner}/apps/{slug}
+    # https://app.pollination.solutions/{owner}/apps/{slug}
     # get antoinedao and testy-test-test
     owner, _, slug = url.split('/')[-3:]
 
