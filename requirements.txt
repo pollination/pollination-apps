@@ -1,5 +1,5 @@
 pollination-sdk>=0.43.0
-pydantic==1.8.2
+pydantic>=2.12.5
 PyYAML==6.0.1
 jsonschema==3.2.0
 click>=7.0

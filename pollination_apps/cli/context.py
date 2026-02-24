@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+from typing import Optional
 
 import click
 import pollination_sdk as sdk
@@ -13,8 +14,8 @@ DEFAULT_CONFIG_PATH = DEFAULT_CONFIG_DIR / 'apps.config.json'
 
 class Context(BaseModel):
 
-    api_token: str = Field(
-        os.getenv('POLLINATION_TOKEN'),
+    api_token: Optional[str] = Field(
+        default_factory=lambda: os.getenv('POLLINATION_TOKEN'),
         description='The API token to use to authenticate a user'
     )
 
@@ -22,14 +23,14 @@ class Context(BaseModel):
     def from_file(cls):
         os.makedirs(DEFAULT_CONFIG_DIR, exist_ok=True)
         try:
-            return cls.parse_file(DEFAULT_CONFIG_PATH)
+            return cls.model_validate_json(DEFAULT_CONFIG_PATH.read_text())
         except:
             ctx = cls()
             ctx.save()
             return ctx
 
     def save(self):
-        DEFAULT_CONFIG_PATH.write_text(self.json())
+        DEFAULT_CONFIG_PATH.write_text(self.model_dump_json())
 
     @property
     def client(self) -> APIClient:
