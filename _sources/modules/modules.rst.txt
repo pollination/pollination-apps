@@ -1,0 +1,7 @@
+pollination_apps
+================
+
+.. toctree::
+   :maxdepth: 4
+
+   pollination_apps
